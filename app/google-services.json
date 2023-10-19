@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "28890711713",
+    "project_id": "casamexico-81195",
+    "storage_bucket": "casamexico-81195.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28890711713:android:e7ca5c735824ab4720d2e0",
+        "android_client_info": {
+          "package_name": "com.example.casamexicoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQdMpfUzqkrZhjuzs1JCsM_scMG7MVnh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
