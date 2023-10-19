@@ -11,6 +11,6 @@ import java.io.Serializable
 //    COCKTAILS("Cocktail", emptyList())
 //}
 
-data class Category (val id: Int, val categoryName: String):Serializable {
-    constructor(): this(0, "")
+data class Category(val id: Long, val name: String, val ordinal: Int) : Serializable {
+    constructor() : this(0, "", 0)
 }

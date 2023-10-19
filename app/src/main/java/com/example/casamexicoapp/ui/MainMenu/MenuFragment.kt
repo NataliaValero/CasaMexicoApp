@@ -42,7 +42,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         val tab = binding.menuTl
 
         categories.forEach{ category ->
-            tab.addTab(tab.newTab().setText(category.categoryName))
+            tab.addTab(tab.newTab().setText(category.name))
         }
     }
 }
