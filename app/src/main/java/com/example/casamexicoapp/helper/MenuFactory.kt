@@ -34,6 +34,7 @@ enum class CategoryType(
 }
 
 class MenuFactory {
+
     companion object {
         fun getCategories(): MutableList<Category> {
             val list = mutableListOf<Category>()
@@ -79,7 +80,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "CHILE CON QUESO",
+                    "Chile con Queso",
                     "Queso fundido, chorizo, served with com tortillas",
                     6.75,
                     ""
@@ -88,7 +89,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "NACHOS SUPREME",
+                    "Nachos Supreme",
                     "Pinto beans, cheese, guacamole, sour cream onions and jalapeños",
                     6.95,
                     ""
@@ -97,7 +98,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "TAQUITOS",
+                    "Taquitos",
                     "Six pork taquitos, served with queso fundido",
                     7.95,
                     ""
@@ -106,7 +107,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "CHILE RELLENO",
+                    "Chile Relleno",
                     "Roasted poblano stuffed with jack cheese in, battered and neo",
                     6.95,
                     ""
@@ -115,27 +116,20 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "SOPE",
-                    "Com cake topped with chicken or steak, beans, cheese and guacamole",
+                    "Sope",
+                    "Corn cake topped with chicken or steak, beans, cheese and guacamole",
                     7.95,
                     ""
                 )
             )
 
-            add(
-                type.getProduct(
-                    "",
-                    "",
-                    6.25,
-                    ""
-                )
-            )
+
         }
 
         private fun getPlatos(type: CategoryType) = mutableListOf<Product>().apply {
             add(
                 type.getProduct(
-                    "FAJITAS",
+                    "Fajitas",
                     "Grilled steak or chicken with sauteed peppers and onions. served with sour cream and guacamole",
                     12.65,
                     ""
@@ -144,7 +138,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "FAJITAS DE CAMARON",
+                    "Fajitas de camarón",
                     "Grilled shrimp with sautéed peppers and onions, served with sour cream and guacamole.",
                     13.25,
                     ""
@@ -153,7 +147,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "TAMALES",
+                    "Tamales",
                     "Homemade masa dough and pork, wrapped in a corn nusk and steamed, with your choice of roja or verde sauce.",
                     12.25,
                     ""
@@ -162,7 +156,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "POLLO EN CHIPOTLE",
+                    "Pollo con Chipotle",
                     "Half chicken rubbed with chipotle and griled",
                     13.75,
                     ""
@@ -171,7 +165,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "CARNE ASADA",
+                    "Carne Asada",
                     "8 oz. New York strip steak rubbed with chipotle and grilled to your liking",
                     6.25,
                     ""
@@ -180,7 +174,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "CHILAQUILES",
+                    "Chilaquiles",
                     "Casserole with layered tortilla chips, chicken or steak, roja sauce and jack cheese",
                     12.25,
                     ""
@@ -191,7 +185,7 @@ class MenuFactory {
         private fun getTacos(type: CategoryType) = mutableListOf<Product>().apply {
             add(
                 type.getProduct(
-                    "CHICKEN",
+                    "Chicken",
                     "Three tacos filled with grilled chicken",
                     9.25,
                     ""
@@ -200,7 +194,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "SHRIMP",
+                    "Shrimp",
                     "Three tacos filled with marinated shrimp, onion, and cilantro",
                     9.25,
                     ""
@@ -209,7 +203,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "CARNITAS",
+                    "Carnitas",
                     "Three tacos filled with pork shoulder with salsa verde, jalapeno, lime, and onion",
                     9.25,
                     ""
@@ -218,7 +212,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "AL PASTOR",
+                    "Al Pastor",
                     "Three tacos filled with spicy, marinated pork",
                     6.25,
                     ""
@@ -227,7 +221,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "CHILE VERDE",
+                    "Chile Verde",
                     "Three tacos filled with pork and a roasted green chili sauce ana tomatillos",
                     8.25,
                     ""
@@ -236,7 +230,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "TILAPIA",
+                    "Tilapia",
                     "Three tacos filled with fried fish and cabbage",
                     9.75,
                     ""
@@ -247,7 +241,7 @@ class MenuFactory {
         private fun getDesserts(type: CategoryType) = mutableListOf<Product>().apply {
             add(
                 type.getProduct(
-                    "CHURROS",
+                    "Churros",
                     "Deep-fried fritter rolled in cinnamon sugar, with a scoop of vanilla ice cream",
                     5.75,
                     ""
@@ -256,7 +250,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "DIPPING CHURROS",
+                    "Dipping Churros",
                     "With dark chocolate & caramel dipping sauces",
                     6.50,
                     ""
@@ -265,7 +259,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "FLAN",
+                    "Flan",
                     "Baked vanilla custard with caramel sauce",
                     4.25,
                     ""
@@ -274,7 +268,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "FRESH BERRY FLAUTAS",
+                    "Fresh Berry Flautas",
                     "Served with cinnamon ice cream",
                     6.50,
                     ""
@@ -283,7 +277,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "SOPAPILLA",
+                    "Sopilla",
                     "A puffed pastry topped with honey, with a scoop of vanilla ice cream",
                     5.50,
                     ""
@@ -322,7 +316,7 @@ class MenuFactory {
 
             add(
                 type.getProduct(
-                    "HORCHATA",
+                    "Horchata",
                     "Cinnamon rice milk - it's dairy free & vegan friendly!",
                     3.50,
                     ""

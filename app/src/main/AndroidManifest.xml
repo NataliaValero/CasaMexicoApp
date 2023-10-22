@@ -13,17 +13,17 @@
         android:theme="@style/Theme.CasaMexicoApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainMenu.MainActivity2"
+            android:name=".ui.mainMenu.MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".ui.MainMenu.MainActivity"
+            android:name=".ui.mainMenu.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
             android:name=".ui.MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".ui.Login.MainActivity"
+            android:name=".ui.login.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

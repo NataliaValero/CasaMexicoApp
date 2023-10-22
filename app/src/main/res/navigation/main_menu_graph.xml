@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.casamexicoapp.ui.MainMenu.MenuFragment"
+        android:name="com.example.casamexicoapp.ui.mainMenu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -19,22 +19,22 @@
     </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
-        android:name="com.example.casamexicoapp.ui.MainMenu.OrderHistoryFragment"
+        android:name="com.example.casamexicoapp.ui.mainMenu.OrderHistoryFragment"
         android:label="fragment_order_history"
         tools:layout="@layout/fragment_order_history" />
     <fragment
         android:id="@+id/moreInfoFragment"
-        android:name="com.example.casamexicoapp.ui.MainMenu.MoreInfoFragment"
+        android:name="com.example.casamexicoapp.ui.mainMenu.MoreInfoFragment"
         android:label="fragment_more_info"
         tools:layout="@layout/fragment_more_info" />
     <fragment
         android:id="@+id/cartItemFragment"
-        android:name="com.example.casamexicoapp.ui.MainMenu.CartItemFragment"
+        android:name="com.example.casamexicoapp.ui.mainMenu.CartItemFragment"
         android:label="fragment_cart_item"
         tools:layout="@layout/fragment_cart_item" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.casamexicoapp.ui.MainMenu.CartFragment"
+        android:name="com.example.casamexicoapp.ui.mainMenu.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 </navigation>

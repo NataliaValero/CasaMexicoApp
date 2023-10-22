@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.casamexicoapp.ui.Login.MainFragment"
+        android:name="com.example.casamexicoapp.ui.login.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.casamexicoapp.ui.Login.LoginFragment"
+        android:name="com.example.casamexicoapp.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.casamexicoapp.ui.Login.SignUpFragment"
+        android:name="com.example.casamexicoapp.ui.login.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action

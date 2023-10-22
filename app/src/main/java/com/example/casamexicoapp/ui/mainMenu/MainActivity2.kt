@@ -1,4 +1,4 @@
-package com.example.casamexicoapp.ui.MainMenu
+package com.example.casamexicoapp.ui.mainMenu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

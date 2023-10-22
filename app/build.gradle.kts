@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -28,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -61,6 +62,10 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    ksp("com.github.bumptech.glide:ksp:4.14.2")
 
 
     testImplementation("junit:junit:4.13.2")
