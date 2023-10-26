@@ -10,17 +10,28 @@ import com.bumptech.glide.Glide
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.databinding.ProductItemBinding
 import com.example.casamexicoapp.model.Product
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
-class ProductsAdapter (var products: List<Product>): RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>(){
+class ProductsAdapter (var products: List<Product>, val listener: onClickListener): RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>(){
 
     inner class ProductViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(product: Product) = with(binding) {
+
+
             productNameTv.setText(product.name)
-            productPriceTv.setText(product.price.toString())
+
+            productPriceTv.setText(product.getFormattedPrice())
 
             Glide.with(root.context)
-                .load("https://freepngimg.com/thumb/puppy/33648-3-golden-retriever-puppy-transparent-image.png")
+                .load(product.imageUrl)
+                .override(581, 385)
                 .into(imageProduct)
+
+            cardView.setOnClickListener{
+                listener.onItemClick(product)
+            }
         }
     }
 
@@ -39,8 +50,8 @@ class ProductsAdapter (var products: List<Product>): RecyclerView.Adapter<Produc
 
         holder.bind(products.get(position))
 
-
     }
+
 
     // Actualizar lista
 
@@ -48,4 +59,10 @@ class ProductsAdapter (var products: List<Product>): RecyclerView.Adapter<Produc
         products = newList
         notifyDataSetChanged()
     }
+
+    interface onClickListener {
+        fun onItemClick(product: Product)
+    }
+
+
 }

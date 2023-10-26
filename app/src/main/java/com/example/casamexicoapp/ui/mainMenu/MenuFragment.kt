@@ -1,9 +1,11 @@
 package com.example.casamexicoapp.ui.mainMenu
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.casamexicoapp.R
@@ -39,6 +41,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         initializeAdapters()
         subscribeObservers()
 
+
+
     }
 
     private fun subscribeObservers() {
@@ -46,9 +50,9 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         viewModel.categories.observe(viewLifecycleOwner, this::onCategoriesReady)
 
         viewModel.products.observe(viewLifecycleOwner) {
-
             onProductsReady(it)
         }
+
     }
 
 
@@ -61,12 +65,15 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         val tab = binding.menuTl
 
 
+
         // agregar categories names al tab layout
         categories.forEach{ category ->
             tab.addTab(tab.newTab().setText(category.name))
 
         }
 
+        // Cuando se cargan las categorías se da select() al último tab que había quedado seleccionado
+        binding.menuTl.getTabAt(viewModel.tabSelectedPosition)?.select()
 
         // on tab selected
         tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -77,8 +84,13 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                     var position = it.position
 
 
+                    // inicializa con la lista vacía hasta que va a buscar los productos
+                    productsAdapter.setList(emptyList())
+
                     // busca los productos
                     viewModel.loadProductFromCategoryPosition(position)
+
+
                 }
             }
 
@@ -96,7 +108,23 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private fun initializeAdapters() {
 
-        productsAdapter = ProductsAdapter(products = emptyList())
+        productsAdapter = ProductsAdapter(products = emptyList(), object : ProductsAdapter.onClickListener{
+            override fun onItemClick(product: Product) {
+
+                Log.v("Selected", product.toString())
+
+                //guardar este producto este producto en el viewmodel
+                viewModel.onProductSelected(product)
+
+
+                view?.findNavController()?.navigate(R.id.action_menuFragment_to_cartItemFragment)
+
+            }
+
+        })
+
+
+
         binding.productsRv.adapter = productsAdapter
         binding.productsRv.layoutManager = GridLayoutManager(context, 2)
     }

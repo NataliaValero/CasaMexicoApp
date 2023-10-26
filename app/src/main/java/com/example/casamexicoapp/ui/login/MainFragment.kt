@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.data.repository.MenuRepositoryImpl
 import com.example.casamexicoapp.data.source.FirestoreFactory
@@ -31,25 +32,20 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
 
 
-//        binding.loginBtn1.setOnClickListener{
-//            view.findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
-//        }
-
-
-//        binding.signupTv.setOnClickListener{
-//            view.findNavController().navigate(R.id.action_mainFragment_to_signUpFragment)
-//        }
-
-
-
-        // Ir a menu con sign up temporal
-        binding.signupTv.setOnClickListener {
-            val intent = Intent(context, MainActivity2::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+        binding.loginBtn1.setOnClickListener{
+            view.findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
         }
 
-// agregar productos a menu de firestore con boton
+
+        binding.signupTv.setOnClickListener{
+            view.findNavController().navigate(R.id.action_mainFragment_to_signUpFragment)
+        }
+
+
+
+
+
+ //agregar productos a menu de firestore con boton
 //        binding.loginBtn1.setOnClickListener{
 //            viewModel.addProducts()
 //        }

@@ -73,6 +73,8 @@ class MenuDataSource (private val firestore: FirebaseFirestore){
             query.forEach {
                 val product = it.toObject(Product::class.java)
 
+              
+
                 if (product != null) {
                     products.add(product)
                 }

@@ -31,7 +31,13 @@
         android:id="@+id/cartItemFragment"
         android:name="com.example.casamexicoapp.ui.mainMenu.CartItemFragment"
         android:label="fragment_cart_item"
-        tools:layout="@layout/fragment_cart_item" />
+        tools:layout="@layout/fragment_cart_item" >
+        <action
+            android:id="@+id/action_cartItemFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.casamexicoapp.ui.mainMenu.CartFragment"

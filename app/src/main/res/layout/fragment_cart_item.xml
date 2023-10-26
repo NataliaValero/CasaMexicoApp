@@ -29,7 +29,7 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:layout_marginTop="80dp"
         android:scaleType="centerCrop"
         android:src="@drawable/imageshort"
@@ -41,7 +41,7 @@
         android:id="@+id/productNameTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/nunito"
         android:gravity="center"
         android:text="Quesadilla"
@@ -51,91 +51,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView3" />
 
+
     <View
         android:id="@+id/background"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="-15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="-40dp"
         android:background="@drawable/light_grey_background"
-        app:layout_constraintBottom_toBottomOf="@id/goShoppingBtn"
+        app:layout_constraintBottom_toBottomOf="@id/addBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productNameTv" />
-
-    <TextView
-        android:id="@+id/kcalValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito"
-        android:text="523 Kcal"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toStartOf="@id/massValue"
-        app:layout_constraintStart_toStartOf="@id/background"
-        app:layout_constraintTop_toTopOf="@+id/background"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
-
-    <TextView
-        android:id="@+id/kcalTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito"
-        android:text="Calories"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/kcalValue"
-        app:layout_constraintTop_toBottomOf="@id/kcalValue"/>
-
-    <TextView
-        android:id="@+id/massValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:fontFamily="@font/nunito"
-        android:text="800 gr"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/kcalValue"
-        app:layout_constraintEnd_toEndOf="@id/background"
-        app:layout_constraintStart_toEndOf="@+id/kcalValue"
-        app:layout_constraintTop_toTopOf="@id/kcalValue" />
-
-
-    <TextView
-        android:id="@+id/massTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/nunito"
-        android:text="Mass"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/ingredientsTv"
-        app:layout_constraintStart_toStartOf="@id/massValue"
-        app:layout_constraintTop_toBottomOf="@id/massValue" />
+        app:layout_constraintTop_toBottomOf="@+id/productNameTv"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/ingredientsTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:padding="35dp"
         android:fontFamily="@font/nunito"
         android:gravity="center_horizontal"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/background"
         app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintTop_toBottomOf="@id/massTv"
-        tools:text="Tortilla crocante, Queso, Arroz, Lechuga, Queso Crema, Guacamole y Pico de Gallo" />
+        app:layout_constraintTop_toTopOf="@id/background"
+        tools:text="Tortilla crocante, Queso, Arroz, Lechuga" />
 
 
     <include
         android:id="@+id/addItemView"
         layout="@layout/add_cart_item"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        app:layout_constraintWidth_percent="0.35"
         app:layout_constraintStart_toStartOf="@+id/background"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsTv"
         app:layout_constraintEnd_toStartOf="@id/totalTv"/>
@@ -143,24 +95,29 @@
 
     <TextView
         android:id="@+id/totalTv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.3"
         android:fontFamily="@font/nunito"
         android:text="$14.00"
         android:textColor="@color/red"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/addItemView"
         app:layout_constraintEnd_toEndOf="@+id/background"
         app:layout_constraintTop_toTopOf="@id/addItemView"
         app:layout_constraintStart_toEndOf="@id/addItemView"/>
 
     <Button
-        android:id="@+id/goShoppingBtn"
-        android:layout_width="wrap_content"
+        android:id="@+id/addBtn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.6"
         android:backgroundTint="@color/red"
-        android:text="Go to shopping cart"
+        android:text="Add"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"

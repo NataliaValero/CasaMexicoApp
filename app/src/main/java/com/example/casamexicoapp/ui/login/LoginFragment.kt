@@ -1,5 +1,6 @@
 package com.example.casamexicoapp.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.example.casamexicoapp.data.source.FirebaseAuthFactory
 import com.example.casamexicoapp.data.viewModel.AuthVMFactory
 import com.example.casamexicoapp.data.viewModel.AuthViewModel
 import com.example.casamexicoapp.databinding.FragmentLoginBinding
+import com.example.casamexicoapp.ui.mainMenu.MainActivity2
 
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -34,18 +36,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val email = binding.emailInputEt.text.toString()
             val password  = binding.passwordInputEt.text.toString()
 
-            //viewModel.login(email, password)
 
-            viewModel.getOrder()
+            //Logea usuario
+            viewModel.login(email, password)
 
+            // Va al menu una vez ingresado usuario
+            val intent = Intent(context, MainActivity2::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
-
-        viewModel.login.observe(viewLifecycleOwner) {
-            Log.v("LOGIN", "user=  $it")
-        }
-
-
+    //viewModel.getOrder()
 
     }
+
 }
