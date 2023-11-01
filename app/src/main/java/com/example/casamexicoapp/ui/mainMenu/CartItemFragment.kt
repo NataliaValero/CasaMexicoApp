@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.data.repository.MenuRepositoryImpl
@@ -15,9 +14,7 @@ import com.example.casamexicoapp.data.source.MenuDataSource
 import com.example.casamexicoapp.data.viewModel.MainVMFactory
 import com.example.casamexicoapp.data.viewModel.MainViewModel
 import com.example.casamexicoapp.databinding.FragmentCartItemBinding
-import com.example.casamexicoapp.model.CartItem
 import com.example.casamexicoapp.model.PriceFormatter
-import com.example.casamexicoapp.model.Product
 
 
 class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
@@ -31,24 +28,37 @@ class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
     private val viewModel:MainViewModel by activityViewModels {
         MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)))
     }
-    private val sharedViewModel:MainViewModel by activityViewModels()
+    //private val sharedViewModel:MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentCartItemBinding.bind(view)
 
-        var productQuantityTv=  binding.addItemView.itemQuantityTv.text
-        var quantity = productQuantityTv.toString().toInt()
 
 
         loadProduct()
+        setupViews(view)
 
 
+
+    }
+
+    private fun setupViews(view: View) = with(binding){
         // volver a menu
-        binding.arrowIv.setOnClickListener{
+        arrowIv.setOnClickListener{
             view.findNavController().navigate(R.id.action_cartItemFragment_to_menuFragment)
         }
+
+        // ir al cart
+        cartIv.setOnClickListener {
+            view.findNavController().navigate(R.id.action_cartItemFragment_to_cartFragment)
+        }
+
+
+        // quantity and add to cart
+        val productQuantityTv=  binding.addItemView.itemQuantityTv.text
+        var quantity = productQuantityTv.toString().toInt()
 
         binding.addItemView.minusTv.setOnClickListener{
 
@@ -64,15 +74,17 @@ class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
             resfreshTotals(quantity)
         }
 
+        // agrega producto al carro con la cantidad actual
         binding.addBtn.setOnClickListener{
-            viewModel.addProduct(quantity)
+            viewModel.addProductToCart(quantity)
             Log.v("Selected", viewModel.cart.toString())
         }
-
 
     }
 
 
+
+    // carga la info del producto al cargar el fragmento
     private fun loadProduct() = with(binding) {
 
         val product = viewModel.productSelected
@@ -83,9 +95,11 @@ class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
 
         Glide.with(requireContext())
             .load(product.imageUrl)
-            .into(imageView3)
+            .into(productImage)
     }
 
+
+    // refresca cantidad y total cuando se agregan o se remueven las unidades
     private fun resfreshTotals(quantity: Int) = with(binding) {
         val product = viewModel.productSelected
         val total = product.price * quantity

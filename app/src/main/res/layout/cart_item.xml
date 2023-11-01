@@ -43,17 +43,16 @@
 
     <TextView
         android:id="@+id/productNameTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Taquitos de carne con papa y mayonesa"
-        android:fontFamily="@font/nunito"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:layout_width="214dp"
+        android:layout_height="22dp"
         android:layout_marginStart="20dp"
-        android:maxLines="1"
+        android:layout_marginTop="16dp"
         android:ellipsize="end"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        android:fontFamily="@font/nunito"
+        android:maxLines="1"
+        android:text="Taquitos de carne con papa y mayonesa"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/cardView1"
         app:layout_constraintTop_toTopOf="@+id/background" />
 
@@ -74,7 +73,7 @@
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/nunito"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:maxLines="1"
         android:ellipsize="end"
@@ -86,10 +85,11 @@
         tools:text="$16.00" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/removeIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
+        android:clickable="true"
         android:src="@drawable/baseline_close_24"
         app:layout_constraintBottom_toBottomOf="@+id/productNameTv"
         app:layout_constraintEnd_toEndOf="@+id/background"

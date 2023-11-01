@@ -1,7 +1,5 @@
 package com.example.casamexicoapp.data.viewModel
 
-
-import android.os.Parcelable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +10,6 @@ import com.example.casamexicoapp.model.Cart
 import com.example.casamexicoapp.model.CartItem
 import com.example.casamexicoapp.model.Category
 import com.example.casamexicoapp.model.Product
-import com.google.android.material.tabs.TabLayout.Tab
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
@@ -47,7 +44,7 @@ class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
     }
 
 
-    fun getProductsByCategoryId(categoryId: Long) = viewModelScope.launch {
+    private fun getProductsByCategoryId(categoryId: Long) = viewModelScope.launch {
         menuRepository.getProductsByCategoryId(categoryId).let {
             products.value = it
         }
@@ -57,7 +54,7 @@ class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
 
         val categories = categories.value ?: return
 
-        val categoryId = categories.get(tabPosition).id
+        val categoryId = categories[tabPosition].id
 
         getProductsByCategoryId(categoryId)
 
@@ -79,14 +76,27 @@ class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
 
     // Cart item and cart --------------------------
 
-    fun addProduct(quantity: Int) {
+
+    fun addProductToCart(quantity: Int) {
 
         val cartItem = CartItem(productSelected, quantity)
         cart.addCartItem(cartItem)
 
     }
 
+    fun getCartItems(): List<CartItem> {
+        return cart.cartItemList
+    }
 
+
+    fun onQuantityChanged(cartItem: CartItem, isAddition: Boolean) {
+
+        cart.updateCartItemQuantity(cartItem, isAddition)
+    }
+
+    fun removeCartItem(cartItem: CartItem) {
+        cart.removeCartItem(cartItem)
+    }
 
 
     // Menu Factory -------------------------------

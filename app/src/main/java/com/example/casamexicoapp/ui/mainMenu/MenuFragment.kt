@@ -41,6 +41,9 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         initializeAdapters()
         subscribeObservers()
 
+        binding.cartIcon.setOnClickListener{
+            view.findNavController().navigate(R.id.action_menuFragment_to_cartFragment)
+        }
 
 
     }
