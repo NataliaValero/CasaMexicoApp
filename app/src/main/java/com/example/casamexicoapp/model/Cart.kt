@@ -21,8 +21,12 @@ data class Cart(
     }
 
     fun removeCartItem(cartItem: CartItem) {
-        cartItemList -= cartItem
-        recalculateCart()
+
+        if(cartItemList.contains(cartItem)) {
+            cartItemList -= cartItem
+            recalculateCart()
+        }
+
     }
 
 
@@ -31,12 +35,27 @@ data class Cart(
         recalculateCart()
     }
 
-    fun updateCartItemQuantity(cartItem: CartItem, quantity: Int) {
-        cartItem.updateQuantity(quantity)
-        recalculateCart()
+    fun updateCartItemQuantity(cartItem: CartItem,isAddition: Boolean) {
+
+        var quantity = cartItem.productQuantity
+
+        if(!isAddition) {
+            quantity --
+        } else {
+            quantity ++
+        }
+
+        if(cartItemList.contains(cartItem)) {
+            cartItem.updateQuantity(quantity)
+            recalculateCart()
+        }
     }
 
+
+
     fun recalculateCart() {
+
+        subtotal = 0.0
 
         cartItemList.forEach{item->
             subtotal += item.total

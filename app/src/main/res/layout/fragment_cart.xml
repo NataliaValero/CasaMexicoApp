@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/backIcon"
             android:layout_width="52dp"
             android:layout_height="42dp"
             android:layout_margin="25dp"
@@ -28,10 +28,10 @@
             android:text="Order Details"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/backIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintStart_toEndOf="@+id/backIcon"
+            app:layout_constraintTop_toTopOf="@+id/backIcon" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
             android:gravity="right"
-            android:text="$147.87888"
+            android:text="$0.00"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
@@ -111,7 +111,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
-            android:text="$14.00"
+            android:text="$0.00"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="right"
@@ -137,7 +137,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
-            android:text="$14.00"
+            android:text="$0.00"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="right"

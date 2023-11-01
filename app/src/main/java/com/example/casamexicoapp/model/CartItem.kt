@@ -26,6 +26,7 @@ data class CartItem(
 
     fun updateQuantity(newQuantity: Int) {
         this.productQuantity = newQuantity
+        total = productQuantity * price
     }
 
     fun getFormattatedTotal() :String {
