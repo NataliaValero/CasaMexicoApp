@@ -2,6 +2,8 @@ package com.example.casamexicoapp.ui.mainMenu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.casamexicoapp.R
@@ -27,6 +29,15 @@ class MainActivity2 : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
+
+        // Hide or show bottom navigation view
+        navController.addOnDestinationChangedListener {controller, destination, arguments ->
+            if(destination.id == R.id.cartItemFragment || destination.id == R.id.cartFragment) {
+                binding.bottomNavigationView.visibility = View.GONE
+            } else {
+                binding.bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
 
     }
 }

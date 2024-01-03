@@ -36,6 +36,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <include layout="@layout/empty_cart_layout"
+        android:id="@+id/emptyCartView"
+        android:visibility="gone"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/orderDetailsGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="itemsRv,totalsLayout,payButton"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsRv"
@@ -45,26 +56,24 @@
         tools:listitem="@layout/cart_item" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/totalsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
-
-
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.099236645" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.90"/>
+            app:layout_constraintGuide_percent="0.8982188" />
 
 
         <TextView
@@ -152,6 +161,7 @@
 
 
     <Button
+        android:id="@+id/payButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"

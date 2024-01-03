@@ -32,8 +32,8 @@ class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentCartItemBinding.bind(view)
+
 
 
 

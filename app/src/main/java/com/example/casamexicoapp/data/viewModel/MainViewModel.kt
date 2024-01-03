@@ -67,6 +67,8 @@ class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
 
     }
 
+    // product selected
+
     fun onProductSelected(product: Product) {
         //productSelected.value = product
         this.productSelected = product
@@ -98,6 +100,9 @@ class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
         cart.removeCartItem(cartItem)
     }
 
+    fun isCartEmpty() : Boolean {
+        return cart.isCartEmpty()
+    }
 
     // Menu Factory -------------------------------
     fun addProducts() {

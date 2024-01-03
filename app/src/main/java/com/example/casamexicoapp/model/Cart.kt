@@ -1,5 +1,6 @@
 package com.example.casamexicoapp.model
 
+
 import java.util.UUID
 
 data class Cart(
@@ -51,6 +52,9 @@ data class Cart(
         }
     }
 
+    fun isCartEmpty() : Boolean {
+        return cartItemList.isEmpty()
+    }
 
 
     fun recalculateCart() {

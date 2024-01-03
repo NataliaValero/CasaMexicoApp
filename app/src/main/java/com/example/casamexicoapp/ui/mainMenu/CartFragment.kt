@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.data.repository.MenuRepositoryImpl
 import com.example.casamexicoapp.data.source.FirestoreFactory
@@ -22,16 +26,19 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     // Adapter
     private lateinit var cartItemsAdapter: CartItemAdapter
-
     // Initialize viewmodel
     private val viewModel: MainViewModel by activityViewModels {
         MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)))
     }
-
     private lateinit var binding: FragmentCartBinding
+
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCartBinding.bind(view)
+
 
 
         initializeAdapters()
@@ -39,14 +46,16 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         setupViews(view)
 
 
-
-
     }
 
     private fun setupViews(view: View) = with(binding){
+
+        // back icon
         backIcon.setOnClickListener{
             view.findNavController().navigate(R.id.action_cartFragment_to_menuFragment)
         }
+
+        showEmptyCartLayout()
     }
 
     private fun initializeAdapters() = with(binding) {
@@ -55,6 +64,8 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         itemsRv.adapter = cartItemsAdapter
         itemsRv.layoutManager = LinearLayoutManager(context)
 
+
+
         cartItemsAdapter.listener = object : CartItemAdapter.CartItemAdapterListener {
 
 
@@ -62,6 +73,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 viewModel.removeCartItem(cartItem)
                 cartItemsAdapter.setCartItemsList(viewModel.getCartItems())
                 refreshTotals()
+                showEmptyCartLayout()
 
             }
 
@@ -86,7 +98,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private fun refreshTotals() = with(binding) {
 
-        var cart = viewModel.cart
+        val cart = viewModel.cart
 
         val subtotal = PriceFormatter.getCurrencyTotal(cart.subtotal)
         val tax = PriceFormatter.getCurrencyTotal(cart.tax)
@@ -97,9 +109,26 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         totalValueTv.setText(total)
     }
 
+    private fun showEmptyCartLayout() {
 
 
+        if(viewModel.isCartEmpty()) {
 
+            // remove the regular cart layout views
+            binding.orderDetailsGroup.visibility = View.GONE
+
+
+            // include empty cart layout
+            binding.emptyCartView.root.visibility = View.VISIBLE
+
+            binding.emptyCartView.goShoppingBtn.setOnClickListener {
+                view?.findNavController()?.navigate(R.id.action_cartFragment_to_menuFragment)
+            }
+
+        }
+
+
+    }
 
 
 }

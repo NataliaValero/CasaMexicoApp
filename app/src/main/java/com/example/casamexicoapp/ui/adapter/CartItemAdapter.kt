@@ -27,10 +27,6 @@ class CartItemAdapter (var cartItems: List<CartItem>,
 
 
 
-            var quantityTv = addItemView.itemQuantityTv
-            var quantityInt = quantityTv.text.toString().toInt()
-
-
             // Configurar listener para el boton plus
             addItemView.plusTv.setOnClickListener {
 

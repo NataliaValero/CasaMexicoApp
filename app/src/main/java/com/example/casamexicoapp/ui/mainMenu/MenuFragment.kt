@@ -86,7 +86,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                     // posicion del tab
                     var position = it.position
 
-
                     // inicializa con la lista vacía hasta que va a buscar los productos
                     productsAdapter.setList(emptyList())
 
@@ -111,6 +110,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private fun initializeAdapters() {
 
+
         productsAdapter = ProductsAdapter(products = emptyList(), object : ProductsAdapter.onClickListener{
             override fun onItemClick(product: Product) {
 
@@ -120,7 +120,9 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 viewModel.onProductSelected(product)
 
 
+                // navegar al cart item fragment
                 view?.findNavController()?.navigate(R.id.action_menuFragment_to_cartItemFragment)
+
 
             }
 
