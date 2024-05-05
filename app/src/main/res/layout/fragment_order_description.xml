@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.mainMenu.CartFragment">
+    tools:context=".ui.mainMenu.OrderDescriptionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_marginStart="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -45,34 +45,47 @@
         android:id="@+id/orderProcessedView"
         android:visibility="gone"/>
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/orderDetailsGroup"
+    <TextView
+        android:id="@+id/orderIdTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="itemsRv,totalsLayout,payButton"/>
+        tools:text="Order #2781"
+        android:textSize="20dp"
+        android:fontFamily="@font/nunito"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
 
+
+    <TextView
+        android:id="@+id/dateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="May 2, 2023 at 5:00 PM"
+        android:textSize="20dp"
+        android:fontFamily="@font/nunito"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/itemsRv"
+        android:id="@+id/itemsOrderRv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
         tools:listitem="@layout/cart_item" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/totalsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="70dp">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.099236645" />
+            app:layout_constraintGuide_begin="39dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineEnd"
@@ -105,6 +118,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/totalItemsTv"
             app:layout_constraintTop_toTopOf="@+id/totalItemsTv" />
 
@@ -112,12 +126,12 @@
             android:id="@+id/taxTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tax"
             android:fontFamily="@font/nunito"
-            android:textStyle="bold"
+            android:text="Tax"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/totalItemsTv"/>
+            app:layout_constraintTop_toBottomOf="@id/totalItemsTv" />
 
 
         <TextView
@@ -125,10 +139,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
+            android:gravity="right"
             android:text="$0.00"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:gravity="right"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toEndOf="@+id/taxTv"
             app:layout_constraintTop_toBottomOf="@id/totalItemsValueTv" />
@@ -138,12 +152,12 @@
             android:id="@+id/totalTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total"
             android:fontFamily="@font/nunito"
-            android:textStyle="bold"
+            android:text="Total"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/taxTv"/>
+            app:layout_constraintTop_toBottomOf="@id/taxTv" />
 
 
         <TextView
@@ -151,30 +165,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
+            android:gravity="right"
             android:text="$0.00"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:gravity="right"
             android:textColor="@color/red"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toEndOf="@+id/taxTv"
             app:layout_constraintTop_toBottomOf="@id/taxValueTv" />
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-    <Button
-        android:id="@+id/payButton"
-        style="@style/MyButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:text="Proceed to Pay"
-        app:backgroundTint="@null"/>
 </LinearLayout>

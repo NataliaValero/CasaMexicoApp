@@ -23,6 +23,7 @@ class AuthViewModel (private val repository: AuthRepository) : ViewModel(){
     fun signup(name:String, email: String, password: String) = viewModelScope.launch {
         val result = repository.signup(name, email, password)
         signup.value = result
+
     }
 
     fun logout() {
@@ -34,13 +35,7 @@ class AuthViewModel (private val repository: AuthRepository) : ViewModel(){
     val currentUser : FirebaseUser?
         get() = repository.currentUser
 
-    fun getOrder() {
-        val repo = OrderRepositoryImpl(FirestoreFactory.firestore)
 
-        viewModelScope.launch {
-            repo.getOrder()
-        }
-    }
 }
 
 class AuthVMFactory(private val repository: AuthRepository): ViewModelProvider.Factory {

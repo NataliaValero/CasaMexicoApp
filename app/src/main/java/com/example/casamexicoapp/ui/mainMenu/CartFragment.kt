@@ -1,25 +1,22 @@
 package com.example.casamexicoapp.ui.mainMenu
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.data.repository.MenuRepositoryImpl
+import com.example.casamexicoapp.data.repository.OrderRepositoryImpl
 import com.example.casamexicoapp.data.source.FirestoreFactory
 import com.example.casamexicoapp.data.source.MenuDataSource
+import com.example.casamexicoapp.data.source.OrdersDataSource
 import com.example.casamexicoapp.data.viewModel.MainVMFactory
 import com.example.casamexicoapp.data.viewModel.MainViewModel
 import com.example.casamexicoapp.databinding.FragmentCartBinding
 import com.example.casamexicoapp.model.CartItem
-import com.example.casamexicoapp.model.PriceFormatter
+import com.example.casamexicoapp.model.Formatter
 import com.example.casamexicoapp.ui.adapter.CartItemAdapter
 
 class CartFragment : Fragment(R.layout.fragment_cart) {
@@ -28,7 +25,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private lateinit var cartItemsAdapter: CartItemAdapter
     // Initialize viewmodel
     private val viewModel: MainViewModel by activityViewModels {
-        MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)))
+        MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)), OrderRepositoryImpl(
+            OrdersDataSource(FirestoreFactory.firestore)
+        ))
     }
     private lateinit var binding: FragmentCartBinding
 
@@ -44,6 +43,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         initializeAdapters()
         loadCartItems()
         setupViews(view)
+        suscribeObservers()
 
 
     }
@@ -53,6 +53,11 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         // back icon
         backIcon.setOnClickListener{
             view.findNavController().navigate(R.id.action_cartFragment_to_menuFragment)
+            //viewModel.orderSaved.value = false
+        }
+
+        payButton.setOnClickListener {
+            viewModel.saveOrder()
         }
 
         showEmptyCartLayout()
@@ -86,6 +91,16 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         }
     }
 
+    private fun suscribeObservers(){
+
+        // live data notifica
+        viewModel.orderSaved.observe(viewLifecycleOwner) {orderSaved ->
+            if(orderSaved) {
+                showOrderProcessedLayout()
+            }
+
+        }
+    }
 
     // carga items con el carro inicial
     private fun loadCartItems() = with(binding) {
@@ -100,9 +115,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
         val cart = viewModel.cart
 
-        val subtotal = PriceFormatter.getCurrencyTotal(cart.subtotal)
-        val tax = PriceFormatter.getCurrencyTotal(cart.tax)
-        val total =  PriceFormatter.getCurrencyTotal(cart.total)
+        val subtotal = cart.getFormattedSubtotal()
+        val tax = cart.getFormattedTax()
+        val total =  cart.getFormattedTotal()
 
         totalItemsValueTv.setText(subtotal)
         taxValueTv.setText(tax)
@@ -128,6 +143,19 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         }
 
 
+    }
+
+    private fun showOrderProcessedLayout() {
+        // remove the regular cart layout views
+        binding.orderDetailsGroup.visibility = View.GONE
+
+
+        // include order processed layout
+        binding.orderProcessedView.root.visibility = View.VISIBLE
+
+        binding.orderProcessedView.backMenuBtn.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_cartFragment_to_menuFragment)
+        }
     }
 
 

@@ -2,8 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.CasaMexicoApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.CasaMexicoApp" parent="Base.Theme.CasaMexicoApp" />
+
+
 </resources>

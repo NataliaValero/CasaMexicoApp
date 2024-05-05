@@ -1,15 +1,41 @@
 package com.example.casamexicoapp.model
 
-import java.io.Serializable
+
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.util.Date
 
-data class Order (
-    val id:Int,
-    val date: Date,
-    val caritemList:String,
-    val itemTotal: Double,
-    val tax:Double,
-    val total:Double): Serializable {
 
-        constructor():this(0,Date(), "", 0.0, 0.0, 0.0)
-    }
+@Serializable
+data class Order (
+    var id: String ,
+    @Contextual
+    var date: Date,
+    var cartItemList: String,
+    var subtotal: Double,
+    var tax:Double,
+    var total:Double) {
+
+
+    // empty constructor
+    constructor() : this (
+        id = "",
+        date = Date(),
+        cartItemList = "",
+        subtotal = 0.0,
+        tax = 0.0,
+        total = 0.0
+    )
+
+    constructor(cart: Cart):this(
+        id = cart.cartId,
+        date = Date(),
+        cartItemList = "",
+        subtotal = cart.subtotal,
+        tax = cart.tax,
+        total = cart.total
+    )
+
+
+
+}

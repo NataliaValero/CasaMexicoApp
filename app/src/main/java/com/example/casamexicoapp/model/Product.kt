@@ -1,8 +1,6 @@
 package com.example.casamexicoapp.model
 
 import java.io.Serializable
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 
 data class Product(
@@ -18,7 +16,7 @@ data class Product(
     constructor() : this("", "", 0.0, 0, "", "")
 
     fun getFormattedPrice():String {
-        return PriceFormatter.getCurrencyTotal(price)
+        return Formatter.getFormattedCurrency(price)
     }
 }
 

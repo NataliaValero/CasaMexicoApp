@@ -1,24 +1,25 @@
 package com.example.casamexicoapp.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View.OnClickListener
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.casamexicoapp.databinding.CartItemBinding
 import com.example.casamexicoapp.model.CartItem
-import com.example.casamexicoapp.model.PriceFormatter
+import com.example.casamexicoapp.model.Formatter
 
 class CartItemAdapter (var cartItems: List<CartItem>,
-    var listener: CartItemAdapterListener? =null) : RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder>() {
+    var listener: CartItemAdapterListener? =null,
+    var isCartReyclerView: Boolean = true) : RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder>() {
 
     inner class CartItemViewHolder(private val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(cartItem: CartItem) = with(binding) {
 
             productNameTv.setText(cartItem.name)
             addItemView.itemQuantityTv.setText(cartItem.productQuantity.toString())
-            priceTv.setText(PriceFormatter.getCurrencyTotal(cartItem.total))
+            priceTv.setText(Formatter.getFormattedCurrency(cartItem.total))
 
             Glide.with(root.context)
                 .load(cartItem.imageUrl)
@@ -26,6 +27,14 @@ class CartItemAdapter (var cartItems: List<CartItem>,
                 .into(imageCartItemIv)
 
 
+            // visibilidad se muestra si es para el recycle view del cart
+            /*Remueve los iconos de plus, minus and remove cuando no es para el recycle view de cart*/
+            removeIcon.isVisible = isCartReyclerView
+
+            if(!isCartReyclerView) {
+                addItemView.minusTv.setText("")
+                addItemView.plusTv.setText("")
+            }
 
             // Configurar listener para el boton plus
             addItemView.plusTv.setOnClickListener {

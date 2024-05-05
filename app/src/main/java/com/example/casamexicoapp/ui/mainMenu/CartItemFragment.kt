@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.data.repository.MenuRepositoryImpl
+import com.example.casamexicoapp.data.repository.OrderRepositoryImpl
 import com.example.casamexicoapp.data.source.FirestoreFactory
 import com.example.casamexicoapp.data.source.MenuDataSource
+import com.example.casamexicoapp.data.source.OrdersDataSource
 import com.example.casamexicoapp.data.viewModel.MainVMFactory
 import com.example.casamexicoapp.data.viewModel.MainViewModel
 import com.example.casamexicoapp.databinding.FragmentCartItemBinding
-import com.example.casamexicoapp.model.PriceFormatter
+import com.example.casamexicoapp.model.Formatter
 
 
 class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
@@ -25,8 +28,10 @@ class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
 
 
     // Initialize viewmodel
-    private val viewModel:MainViewModel by activityViewModels {
-        MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)))
+    private val viewModel: MainViewModel by activityViewModels {
+        MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)), OrderRepositoryImpl(
+            OrdersDataSource(FirestoreFactory.firestore)
+        ))
     }
     //private val sharedViewModel:MainViewModel by activityViewModels()
 
@@ -104,7 +109,7 @@ class CartItemFragment : Fragment(R.layout.fragment_cart_item) {
         val product = viewModel.productSelected
         val total = product.price * quantity
 
-        totalTv.text = PriceFormatter.getCurrencyTotal(total)
+        totalTv.text = Formatter.getFormattedCurrency(total)
         addItemView.itemQuantityTv.text = quantity.toString()
     }
 

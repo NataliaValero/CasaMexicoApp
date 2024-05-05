@@ -21,7 +21,11 @@
         android:id="@+id/orderHistoryFragment"
         android:name="com.example.casamexicoapp.ui.mainMenu.OrderHistoryFragment"
         android:label="fragment_order_history"
-        tools:layout="@layout/fragment_order_history" />
+        tools:layout="@layout/fragment_order_history" >
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_orderDescriptionFragment"
+            app:destination="@id/orderDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/moreInfoFragment"
         android:name="com.example.casamexicoapp.ui.mainMenu.MoreInfoFragment"
@@ -33,13 +37,11 @@
         android:label="fragment_cart_item"
         tools:layout="@layout/fragment_cart_item" >
         <action
-            android:id="@+id/action_cartItemFragment_to_menuFragment"
-            app:destination="@id/menuFragment"
-            app:popUpTo="@id/menuFragment"
-            app:popUpToInclusive="true"/>
-        <action
             android:id="@+id/action_cartItemFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_cartItemFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -49,5 +51,14 @@
         <action
             android:id="@+id/action_cartFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDescriptionFragment"
+        android:name="com.example.casamexicoapp.ui.mainMenu.OrderDescriptionFragment"
+        android:label="fragment_order_description"
+        tools:layout="@layout/fragment_order_description" >
+        <action
+            android:id="@+id/action_orderDescriptionFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
 </navigation>

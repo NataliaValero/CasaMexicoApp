@@ -74,6 +74,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:hint="Name"
+        android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createAccountTv"/>
@@ -87,6 +88,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:hint="E-mail"
+        android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameInputEt"/>
@@ -117,6 +119,7 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordInputEt" />

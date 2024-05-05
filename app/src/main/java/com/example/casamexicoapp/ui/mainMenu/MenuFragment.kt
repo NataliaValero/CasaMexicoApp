@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.casamexicoapp.R
 import com.example.casamexicoapp.data.repository.MenuRepositoryImpl
+import com.example.casamexicoapp.data.repository.OrderRepositoryImpl
 import com.example.casamexicoapp.data.source.FirestoreFactory
 import com.example.casamexicoapp.data.source.MenuDataSource
+import com.example.casamexicoapp.data.source.OrdersDataSource
 import com.example.casamexicoapp.data.viewModel.MainVMFactory
 import com.example.casamexicoapp.data.viewModel.MainViewModel
 import com.example.casamexicoapp.databinding.FragmentMenuBinding
@@ -29,10 +31,9 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     private lateinit var productsAdapter: ProductsAdapter
 
     // Initialize viewmodel
-    private val viewModel:MainViewModel by activityViewModels {
-        MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)))
-    }
-
+    private val viewModel: MainViewModel by activityViewModels {
+        MainVMFactory(MenuRepositoryImpl(MenuDataSource(FirestoreFactory.firestore)), OrderRepositoryImpl(
+            OrdersDataSource(FirestoreFactory.firestore)))}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -89,9 +90,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                     // inicializa con la lista vacía hasta que va a buscar los productos
                     productsAdapter.setList(emptyList())
 
-                    // busca los productos
                     viewModel.loadProductFromCategoryPosition(position)
-
 
                 }
             }

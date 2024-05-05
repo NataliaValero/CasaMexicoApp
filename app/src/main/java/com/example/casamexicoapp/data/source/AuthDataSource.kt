@@ -3,9 +3,11 @@ package com.example.casamexicoapp.data.source
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class AuthDataSource(private val firebaseAuth: FirebaseAuth) {
+
 
     suspend fun login(email: String, password: String) : FirebaseUser? {
         return try {
@@ -24,8 +26,6 @@ class AuthDataSource(private val firebaseAuth: FirebaseAuth) {
 
 
 
-
-
         } catch (e: Exception) {
             null
         }
@@ -38,5 +38,8 @@ class AuthDataSource(private val firebaseAuth: FirebaseAuth) {
 
     val currentUser: FirebaseUser?
         get() = firebaseAuth.currentUser
+
+
+
 
 }

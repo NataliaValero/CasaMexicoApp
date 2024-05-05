@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.mainMenu.OrderHistoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Orders History"
-        android:textSize="50dp"/>
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="36dp"
+        android:gravity="center"
+        android:text="My Orders"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <include
+        layout="@layout/zero_orders_layout"
+        android:id="@+id/zeroOrdersLayout"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ordersRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/order_item" />
+
+</LinearLayout>

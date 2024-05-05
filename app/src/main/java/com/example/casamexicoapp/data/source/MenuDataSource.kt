@@ -1,12 +1,8 @@
 package com.example.casamexicoapp.data.source
 
-import com.example.casamexicoapp.helper.MenuFactory
 import com.example.casamexicoapp.model.Category
 import com.example.casamexicoapp.model.Product
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.tasks.await
 
 class MenuDataSource (private val firestore: FirebaseFirestore){

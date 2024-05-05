@@ -1,25 +1,32 @@
 package com.example.casamexicoapp.data.viewModel
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.casamexicoapp.data.repository.MenuRepository
+import com.example.casamexicoapp.data.repository.OrderRepository
+import com.example.casamexicoapp.data.repository.OrderRepositoryImpl
 import com.example.casamexicoapp.helper.MenuFactory
 import com.example.casamexicoapp.model.Cart
 import com.example.casamexicoapp.model.CartItem
 import com.example.casamexicoapp.model.Category
+import com.example.casamexicoapp.model.Order
 import com.example.casamexicoapp.model.Product
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
+class MainViewModel(private val menuRepository: MenuRepository, private val orderRepository: OrderRepository) : ViewModel() {
+
+
 
     var categories: MutableLiveData<List<Category>> = MutableLiveData()
     var products: MutableLiveData<List<Product>> = MutableLiveData()
     var productSelected : Product = Product()
     var cart: Cart = Cart()
-
-
+    var orderSaved: MutableLiveData<Boolean> = MutableLiveData()
+    var orders : MutableLiveData<List<Cart>> = MutableLiveData()
+    var orderSelected: Cart = Cart()
 
 
 
@@ -114,13 +121,46 @@ class MainViewModel(private val menuRepository: MenuRepository) : ViewModel() {
     }
 
 
+    // Orders save and get
+    fun saveOrder()  = viewModelScope.launch {
+        orderRepository.saveOrder(cart).let {isSuccess ->
+            if(isSuccess) {
+                orderSaved.value = true
+                initializeCart()
+            } else {
+                orderSaved.value = false
+            }
+        }
+    }
+
+
+    fun initializeCart() {
+
+        // reiniciar carro y orden nueva
+        cart = Cart()
+        orderSaved.value = false
+    }
+
+    fun getOrders() = viewModelScope.launch {
+
+        orderRepository.getOrders().let {
+            orders.value = it
+        }
+    }
+
+    fun onOrderSelected(item: Cart) {
+        this.orderSelected = item
+
+    }
+
+
 }
 
 
 
 
-class MainVMFactory(private val menuRepository: MenuRepository): ViewModelProvider.Factory {
+class MainVMFactory(private val menuRepository: MenuRepository, private val orderRepository: OrderRepository): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(MenuRepository::class.java).newInstance(menuRepository)
+        return modelClass.getConstructor(MenuRepository::class.java, OrderRepository::class.java).newInstance(menuRepository, orderRepository)
     }
 }

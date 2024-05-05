@@ -1,7 +1,9 @@
 package com.example.casamexicoapp.model
 
+import kotlinx.serialization.Serializable
 import java.util.UUID
 
+@Serializable
 data class CartItem(
     var cartItemId: String,
     var productId: String,
@@ -30,7 +32,7 @@ data class CartItem(
     }
 
     fun getFormattatedTotal() :String {
-        return PriceFormatter.getCurrencyTotal(total)
+        return Formatter.getFormattedCurrency(total)
     }
 
 }
